@@ -30,7 +30,6 @@ class Place(BaseModel, Base):
         @property
         def reviews(self):
             """ reviews getter for FileStorage """
-            from models import storage
 
             my_list = {}
             all_review = self.reviews
@@ -42,7 +41,6 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             """getter amenity that returns the list of Amenity"""
-            from models import storage
             from models.amenity import Amenity
 
             my_ame = {}
