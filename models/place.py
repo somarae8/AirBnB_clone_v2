@@ -56,7 +56,7 @@ class Place(BaseModel, Base):
         def amenities(sef, obj=None):
             """Setter amenities"""
 
-            if type(obj) == 'Amenity':
+            if obj.__class__name__ == 'Amenity':
                 self.amenities_ids.append(obj.id)
 
 place_amenity = Table('place_amenity', Base.metadata,
