@@ -41,7 +41,6 @@ class Place(BaseModel, Base):
         @property
         def amenities(self):
             """getter amenity that returns the list of Amenity"""
-            from models.amenity import Amenity
 
             my_ame = {}
             all_amenities = self.amenities
