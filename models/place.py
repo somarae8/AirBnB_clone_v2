@@ -45,12 +45,12 @@ class Place(BaseModel, Base):
             from models import storage
             from models.amenity import Amenity
 
-            our_amenities = storage.all(Amenity)
-            plc_amenities = []
-            for ame in our_amenities.values():
-                if ame.id in self.amenity_ids:
-                    plc_amenities.append(ame)
-            return plc_amenities
+            my_ame = {}
+            all_amenities = self.amenities
+            for ame in all_amenities:
+                if self.id == ame.id:
+                    my_ame.append(ame)
+            return my_ame
 
         @amenities.setter
         def amenities(sef, obj=None):
