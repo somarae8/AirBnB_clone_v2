@@ -35,42 +35,23 @@ class Place(BaseModel, Base):
 
         @property
         def reviews(self):
-            """ reviews getter for FileStorage
-            Returns the list of Review instances with
-            place_id equals to the current Place.id
-            """
-            from models import storage
-
-            our_plcs = storage.all(Review)
-            review_plcs = []
-            for rev in our_plcs.values():
+            my_list = {}
+            all_review = self.reviews
+            for rev in all_review:
                 if self.id == rev.id:
-                    review_plcs.append(rev)
-
-            return review_plcs
+                    my_list.append(rev)
+            return my_list
 
         @property
         def amenities(self):
-            """
-            getter amenity that returns the list of Amenity
-            instances based on the attribute amenity_ids
-            """
-            from models import storage
-            from models.amenity import Amenity
-
-            our_amenities = storage.all(Amenity)
-            plc_amenities = []
-            for ame in our_amenities.values():
-                if ame.id in self.amenity_ids:
-                    plc_amenities.append(ame)
-            return plc_amenities
+            my_list = {}
+            all_amenities = self.amenities
+            for ameni in all_amenities:
+                if self.id == ameni.id:
+                    my_list.append(ameni)
+            return my_list
 
         @amenities.setter
-        def amenities(sef, obj=None):
-            """
-            Setter amenities, that handles append method for
-            adding an Amenity.id to the attribute amenity_ids.
-            """
-
-            if type(obj) == 'Amenity':
+        def amenities(self, obj):
+            if obj.__class__.__name__ == 'Amenity':
                 self.amenities_ids.append(obj.id)
