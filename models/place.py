@@ -35,7 +35,7 @@ class Place(BaseModel, Base):
 
         @property
         def reviews(self):
-            my_list = {}
+            my_list = []
             all_review = self.reviews
             for rev in all_review:
                 if self.id == rev.id:
@@ -44,7 +44,7 @@ class Place(BaseModel, Base):
 
         @property
         def amenities(self):
-            my_list = {}
+            my_list = []
             all_amenities = self.amenities
             for ameni in all_amenities:
                 if self.id == ameni.id:

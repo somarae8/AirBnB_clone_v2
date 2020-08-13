@@ -17,7 +17,7 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
-            my_list = {}
+            list_cities = []
             all_cities = self.cities
             for city in all_cities:
                 if State.id == city.state_id:
