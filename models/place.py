@@ -3,6 +3,15 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Table, Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship, backref
+from os import getenv
+
+place_amenity = Table('place_amenity', Base.metadata,
+                      Column('place_id', String(60), ForeignKey('places.id'),
+                             primary_key=True, nullable=False),
+                      Column('amenity_id', String(60),
+                             ForeignKey('amenities.id'),
+                             primary_key=True, nullable=False))
+
 
 class Place(BaseModel, Base):
     """ The Place class """
@@ -21,12 +30,31 @@ class Place(BaseModel, Base):
 
     reviews = relationship("Review", backref="place", cascade="all, delete")
 
-    @property
-    def reviews(self):
-        my_list = {}
-        all_review = self.reviews
-        for rev in all_review:
-            if self.id == rev.id:
-                my_list.append(rev)
-        return my_list
-    
+    if getenv('HBNB_TYPE_STORAGE') != 'db':
+
+        @property
+        def reviews(self):
+            my_list = {}
+            all_review = self.reviews
+            for rev in all_review:
+                if self.id == rev.id:
+                    my_list.append(rev)
+            return my_list
+
+        @property
+        def amenities(self):
+            my_list = {}
+            all_amenities = self.amenities
+            for ameni in all_amenities:
+                if self.id == ameni.id:
+                    my_list.append(ameni)
+            return my_list
+
+        @amenities.setter
+        def amenities(self, obj):
+            if obj.__class__.__name__ == 'Amenity':
+                self.amenities_ids.append(obj.id)
+
+    else:
+        amenities = relationship('Amenity', secondary='place_amenity',
+                                 viewonly=False)
