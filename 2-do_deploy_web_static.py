@@ -5,11 +5,20 @@ from fabric.api import put, run, env
 from os import path
 
 
-env.hosts = ['35.196.197.56', '35.196.197.56']
+env.hosts = ['35.196.197.56', '35.231.231.92']
 
 
 def do_deploy(archive_path):
-    """Distributes an archive to your web servers."""
+    """distributes an archive to your web servers."""
     if not path.exists(archive_path):
         return(False)
-
+    try:
+        put(archive_path, '/tmp/')
+        mypath = "/data/web_static/releases/"
+        file = archive_path.split("/")[-1]
+        wo_extn = file.split(".")[0]
+        run('mkdir -p {}{}/'.format(mypath, wo_extn))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file, mypath, wo_extn))
+        run('rm /tmp/{}'.format(file))
+    except:
+        print(file)
