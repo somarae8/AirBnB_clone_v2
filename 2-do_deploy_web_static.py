@@ -14,11 +14,12 @@ def do_deploy(archive_path):
         return(False)
     try:
         put(archive_path, '/tmp/')
-        mypath = "/data/web_static/releases/"
+        my_path = "/data/web_static/releases/"
         file = archive_path.split("/")[-1]
         wo_extn = file.split(".")[0]
-        run('mkdir -p {}{}/'.format(mypath, wo_extn))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file, mypath, wo_extn))
+        run('mkdir -p {}{}/'.format(my_path, wo_extn))
+        run('tar -xzf /tmp/{} -C {}{}/'.format(file, my_path, wo_extn))
         run('rm /tmp/{}'.format(file))
+        run('ln -s {}{}/ /data/web_static/current'.format(my_path, wo_extn))
     except:
         print(file)
