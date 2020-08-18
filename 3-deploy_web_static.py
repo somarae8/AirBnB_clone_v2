@@ -17,6 +17,7 @@ def do_pack():
     if execute.succeeded:
         return webfiles
 
+
 def do_deploy(archive_path):
     """distributes an archive to your web servers."""
     if not path.exists(archive_path):
@@ -39,7 +40,8 @@ def do_deploy(archive_path):
         return True
     except:
         return False
-    
+
+
 def deploy():
     """Return the return value of do_deploy """
     file = do_pack()
