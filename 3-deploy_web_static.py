@@ -3,9 +3,12 @@
 
 from fabric.api import put, run, env
 from os import path
+from datetime import datetime
+from fabric.api import local
 
 
 env.hosts = ['35.196.197.56', '35.231.231.92']
+t = datetime.now()
 
 
 def do_pack():
@@ -45,7 +48,7 @@ def do_deploy(archive_path):
 def deploy():
     """Return the return value of do_deploy """
     file = do_pack()
-    if file None:
+    if file is None:
         return False
     value = do_deploy(file)
     return value
