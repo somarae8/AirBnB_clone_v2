@@ -21,5 +21,6 @@ def do_deploy(archive_path):
         run('tar -xzf /tmp/{} -C {}{}/'.format(file, my_path, wo_extn))
         run('rm /tmp/{}'.format(file))
         run('ln -s {}{}/ /data/web_static/current'.format(my_path, wo_extn))
+        return True
     except:
-        print(file)
+        return False
