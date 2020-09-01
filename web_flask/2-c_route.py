@@ -1,0 +1,30 @@
+#!/usr/bin/python3
+"""script that starts a Flask web application"""
+
+
+from flask import Flask
+app = Flask(__name__)
+
+
+@app.route('/', strict_slashes=False)
+def message_1():
+    """return a mesagge"""
+
+    return ("Hello HBNB!")
+
+
+@app.route('/hbnb', strict_slashes=False)
+def message_2():
+    """return a mesagge"""
+
+    return ("HBNB")
+
+
+@app.route('/c/<text>', strict_slashes=False)
+def message_3(text):
+    """return a mesagge"""
+    text.replace('_', ' ')
+    return ("C {}".format(text))
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='5000')
