@@ -8,28 +8,29 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def message_1():
-    """return a mesagge"""
+    """return a message"""
 
     return ("Hello HBNB!")
 
 
 @app.route('/hbnb', strict_slashes=False)
 def message_2():
-    """return a mesagge"""
+    """return a message"""
 
     return ("HBNB")
 
 
 @app.route('/c/<text>', strict_slashes=False)
 def message_3(text):
-    """return a mesagge"""
+    """return a message"""
     text = text.replace('_', ' ')
     return ("C {}".format(text))
 
 
 @app.route('/python/<text>', strict_slashes=False)
+@app.route('/python', strict_slashes=False)
 def message_4(text="is cool"):
-    """return a mesagge"""
+    """return a message"""
     text = text.replace('_', ' ')
     return ("Python {}".format(text))
 
