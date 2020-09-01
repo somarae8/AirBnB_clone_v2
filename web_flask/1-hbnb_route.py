@@ -7,14 +7,14 @@ app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello():
+def message_1():
     """return a mesagge"""
 
     return ("Hello HBNB!")
 
 
 @app.route('/hbnb', strict_slashes=False)
-def hello():
+def message_2():
     """return a mesagge"""
 
     return ("HBNB")
