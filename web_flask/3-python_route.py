@@ -27,7 +27,7 @@ def message_3(text):
     return ("C {}".format(text))
 
 
-@app.route("/python/<text>", strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def message_3(text="is cool"):
     """return a mesagge"""
     text = text.replace('_', ' ')
