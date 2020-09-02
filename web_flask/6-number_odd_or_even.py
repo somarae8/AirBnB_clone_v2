@@ -52,7 +52,7 @@ def message_7(n):
     """return web page if n is odd or even"""
     if (n % 2 == 0):
         return render_template('6-number_odd_or_even.html',
-                                number=n, text='even')
+                               number=n, text='even')
     return render_template('6-number_odd_or_even.html', number=n, text='odd')
 
 if __name__ == '__main__':
