@@ -28,8 +28,8 @@ if id:
     state_id = 'State.' + id
     if state_id in states.keys():
         state = states[state_id]
-    return render_template('9-states.html', state=state,
-                           id=state_id, states=states)
+return render_template('9-states.html', id=state_id,
+                       state=state, states=states)
 
 
 if __name__ == "__main__":
