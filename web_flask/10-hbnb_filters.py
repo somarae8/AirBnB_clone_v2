@@ -21,11 +21,10 @@ def teardown_storage(exception):
 def function_filters(id=None):
     """connect with filters temp"""
 
+    states = storage.all(State).values()
+    amenities = storage.all(Amenity).values()
     return render_template(
-        '10-hbnb_filters.html',
-        states=storage.all(State).values(),
-        amenities=storage.all(Amenity).values())
-
+        '10-hbnb_filters.html', states, amenities)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
