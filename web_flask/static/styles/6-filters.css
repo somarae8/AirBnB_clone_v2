@@ -66,9 +66,7 @@ ul.popover
 	height: 240px;
 	visibility: hidden;
         overflow: auto;
-        
-
-
+	max-height: 300px;
 }
 ul.popover::-webkit-scrollbar
 {
