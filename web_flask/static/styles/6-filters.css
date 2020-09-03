@@ -65,8 +65,14 @@ ul.popover
 	padding-left:19.5%; 
 	height: 240px;
 	visibility: hidden;
+        overflow: auto;
+        
 
 
+}
+ul.popover::-webkit-scrollbar
+{
+	display: none;
 }
 ul.popover ul
 {
